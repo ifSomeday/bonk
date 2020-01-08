@@ -31,7 +31,6 @@ class PlayerTracker(commands.Cog):
         async with self.fileLock:
             for k in self.database:
                 if nameL in k:
-                    #print(k)
                     out.append(self.database[k]["name"])
         await ctx.send("\n".join(out))
             
@@ -41,8 +40,12 @@ class PlayerTracker(commands.Cog):
     async def display(self, ctx, *, name : str):
         async with self.fileLock:
             if name.lower() in self.database:
-                desc = "\n\t".join(self.database[name.lower()]["description"])
-                await ctx.send("**{0}**\n\t{1}".format(name, desc))
+                desc = " **-** {0}".format("\n **-** ".join(self.database[name.lower()]["description"]))
+                embed = discord.Embed()
+                embed.color = discord.Colour.purple()
+                embed.title = self.database[name.lower()]["name"]
+                embed.description = desc
+                await ctx.send(embed=embed)
             else:
                 await ctx.send("`{0}` not found".format(name))
 
