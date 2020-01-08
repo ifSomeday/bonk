@@ -124,3 +124,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 keys.py
+dev.py
+*.pickle
