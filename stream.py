@@ -29,7 +29,6 @@ class Stream(commands.Cog):
 
     @tasks.loop(seconds=60.0)
     async def checkStream(self):
-        print("hi")
         try:
             async with self.fileLock:
                 for user in self.database:
@@ -83,7 +82,6 @@ class Stream(commands.Cog):
 
 
     @commands.command()
-    @commands.has_permissions(manage_guild=True)
     async def addStream(self, ctx, *, streamId : str):
         streamId = streamId.lower()
         if(not streamId in self.database):
@@ -98,7 +96,6 @@ class Stream(commands.Cog):
         
     
     @commands.command()
-    @commands.has_permissions(manage_guild=True)
     async def removeStream(self, ctx, *, streamId : str):
         streamId = streamId.lower()
         if(streamId in self.database):
@@ -110,7 +107,6 @@ class Stream(commands.Cog):
 
 
     @commands.command()
-    @commands.has_permissions(manage_guild=True)
     async def addAlertChannel(self, ctx):
         if(not ctx.channel.id in self.alertChannels):
             self.alertChannels.append(ctx.channel.id)
@@ -121,7 +117,6 @@ class Stream(commands.Cog):
 
 
     @commands.command()
-    @commands.has_permissions(manage_guild=True)
     async def removeAlertChannel(self, ctx):
         if(ctx.channel.id in self.alertChannels):
             self.alertChannels.remove(ctx.channel.id)
@@ -132,13 +127,11 @@ class Stream(commands.Cog):
 
 
     @commands.command()
-    @commands.has_permissions(manage_guild=True)
     async def listStreams(self, ctx):
         await ctx.send("Currently Tracking:\n{0}".format("\n".join(self.database.keys())))
 
 
     @commands.command()
-    @commands.has_permissions(manage_guild=True)
     async def listChannels(self, ctx):
         await ctx.send("Currently Alerting:\n{0}".format("\n".join(self.alertChannels)))
 
