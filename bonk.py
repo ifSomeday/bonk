@@ -4,7 +4,7 @@ import keys
 
 import os
 
-client = commands.Bot(command_prefix='.')
+client = commands.Bot(command_prefix='.', case_insensitive=True)
 
 @client.event
 async def on_ready():
