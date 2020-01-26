@@ -29,11 +29,12 @@ class Stream(commands.Cog):
 
     @tasks.loop(seconds=60.0)
     async def checkStream(self):
-        print("hi")
         try:
             async with self.fileLock:
                 for user in self.database:
                     channel = self.helix.user(user)
+                    if(channel is None):
+                        return
                     if(not self.database[user]["online"] == channel.is_live):
                         if(channel.is_live):
                             embed = await self.buildEmbed(channel)

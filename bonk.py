@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import keys
 
+import os
 
 client = commands.Bot(command_prefix='.')
 
@@ -26,5 +27,10 @@ except Exception as e:
     print("FAILED to load Stream:\n{0}".format(e))
 else:
     print("Loaded Stream")
+
+
+##load dev plugin if it exists (not for prod)
+if(os.path.isfile("{0}/dev.py".format(os.getcwd()))):
+    client.load_extension("dev")
 
 client.run(keys.CLIENT_SECRET)
