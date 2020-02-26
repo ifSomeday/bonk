@@ -106,7 +106,7 @@ class Stream(commands.Cog):
                 'client_id' : keys.TWITCH_BONK2_ID }
             async with session.post(self.twitchRevokeTokenUrl, params = params) as r:
                 if r.status == 200:
-                    print("token revoked")
+                    pass
 
     async def buildEmbed(self, channel, stream):
         embed = discord.Embed()
