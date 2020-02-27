@@ -18,7 +18,7 @@ class Elevated(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-        self.postChannel = 389504390177751054
+        self.postChannel = 427380139186323459
 
         self.steamIds = [31646409]
 
