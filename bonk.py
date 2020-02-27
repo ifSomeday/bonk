@@ -29,6 +29,15 @@ else:
     print("Loaded Stream")
 
 
+##load stream tracking
+try:
+    client.load_extension("elevated")
+except Exception as e:
+    print("FAILED to load Elevated:\n{0}".format(e))
+else:
+    print("Loaded Elevated")
+
+
 ##load dev plugin if it exists (not for prod)
 if(os.path.isfile("{0}/dev.py".format(os.getcwd()))):
     client.load_extension("dev")
