@@ -49,7 +49,7 @@ class Stream(commands.Cog):
                         continue
                     stream = stream[0]
                     isLive = stream["type"] == "live"
-                    if(not self.database[user]["online"] == isLive or True):
+                    if(not self.database[user]["online"] == isLive):
                         if(isLive):
                             embed = await self.buildEmbed(channel, stream)
                             messageIds = await self.doAlert(embed)
