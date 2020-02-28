@@ -18,7 +18,7 @@ class Elevated(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-        self.postChannel = 427380139186323459
+        self.postChannel = 628650040876859431 
 
         self.steamIds = [31646409]
 
@@ -143,14 +143,14 @@ class Elevated(commands.Cog):
         embed.add_field(name="LH", value=player['last_hits'])
 
 
-    ## Load the stream database
+    ## Load the history database 
     def loadHistory(self):
         if(os.path.isfile(self.filePath)):
             with open(self.filePath, "rb") as f:
-                self.database = pickle.load(f)
+                self.lastMatch = pickle.load(f)
 
 
-    ## Save the stream database
+    ## Save the history database 
     async def saveHistory(self):
         async with self.fileLock:
             with open(self.filePath, "wb") as f:
