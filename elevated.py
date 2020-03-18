@@ -4,6 +4,7 @@ from discord.ext import commands, tasks
 import keys
 
 import os
+import sys
 import asyncio
 import pickle
 import aiohttp
@@ -18,7 +19,9 @@ class Elevated(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-        self.postChannel = 628650040876859431 
+        self.postChannel = 0 
+        if(sys.platform.startswith("linux")):
+            self.postChannel = 628650040876859431
 
         self.steamIds = [31646409]
 
@@ -49,6 +52,9 @@ class Elevated(commands.Cog):
 
                 history = await self.__getMatchHistory(steamId)
                 
+                if(history == None):
+                    continue
+
                 ## Started from the bottom now we here
                 history = history[::-1]
 
