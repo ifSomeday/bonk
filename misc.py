@@ -24,6 +24,7 @@ class Misc(commands.Cog):
         print(user.name)
         await user.send(self.tesxt)
 
+    ##blank command so it shows up in help, the on_message listener below handles the actual processing
     @commands.command(help="hamham")
     async def save(self, ctx):
         #await self.sendHamHam(ctx)
@@ -33,6 +34,9 @@ class Misc(commands.Cog):
     async def on_message(self, ctx):
         if(any(x in ctx.clean_content for x in [".save", "!save"])):
             await self.sendHamHam(ctx, ctx.channel)
+        if(ctx.guild.id == 427380139186323457 and ctx.author.id == 98114500615487488):
+            e = self.bot.get_emoji(729799500838862961)
+            await ctx.add_reaction(e)
 
 
     async def sendHamHam(self, ctx, destination):
